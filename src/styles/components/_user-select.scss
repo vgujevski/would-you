@@ -1,0 +1,30 @@
+.user-select-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30rem;
+  margin: auto;
+  justify-content: center;
+
+  button {
+    margin-top: 2rem;
+  }
+}
+
+.react-select-container {
+  width: 30rem;
+}
+
+.user-option-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-option-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
