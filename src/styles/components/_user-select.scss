@@ -17,6 +17,7 @@
 }
 
 .user-option-container {
+  height: 4rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -27,4 +28,8 @@
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
+}
+
+.user-option-name {
+  margin-left: 3rem;
 }

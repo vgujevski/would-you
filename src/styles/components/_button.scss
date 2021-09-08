@@ -1,0 +1,19 @@
+.button {
+  outline: none;
+  text-decoration: none;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.2rem;
+  background-color: $color-dark-accent;
+  color: $color-light;
+
+  &[disabled] {
+    opacity: 0.6;
+  }
+
+  &:hover, &:active {
+    &:not([disabled]) {
+      background-color: darken($color-dark-accent, 5%);
+    }
+  }
+}

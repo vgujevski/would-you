@@ -8,7 +8,7 @@ export const UserOption = ({ id }) => {
   return (
     <div className="user-option-container">
       <img className="user-option-avatar" src={avatarURL} alt="avatar" />
-      {name}
+      <div className="user-option-name">{name}</div>
     </div>
   )
 }

@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
 
 import { selectAllUsers } from '../users/usersSlice'
 import { UserOption } from './UserOption'
-
+import { login } from './authSlice'
 
 export const Login = () => {
 
-  const [selectedUser, setSelectedUser] = useState('default')
+  const [selectedUser, setSelectedUser] = useState('')
   const users = useSelector(selectAllUsers)
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('handleSubmit called with: ', selectedUser.value);
+    // disptachh user login
+    dispatch(login(selectedUser.value))
+    // redirect to home page
   }
 
   let options = []
@@ -34,7 +38,7 @@ export const Login = () => {
         formatOptionLabel={formatOptionsLabel}
         options={options}
       />
-      <button onClick={handleSubmit}>Login</button>
+      <button disabled={selectedUser === ''} onClick={handleSubmit} className="button">Login</button>
     </div>
   )
 }
