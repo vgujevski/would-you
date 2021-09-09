@@ -15,9 +15,7 @@ export const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('handleSubmit called with: ', selectedUser.value);
-    // disptachh user login
     dispatch(login(selectedUser.value))
-    // redirect to home page
   }
 
   let options = []

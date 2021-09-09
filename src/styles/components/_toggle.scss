@@ -1,0 +1,12 @@
+.toggle-container {
+  margin: auto;
+  width: 35%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.toggle-active {
+  background-color: darken($color-dark-accent, 25%);
+}

@@ -5,20 +5,20 @@ import { PrivateRoute } from './features/routes/PrivateRoute';
 import { PublicRoute } from './features/routes/PublicRoute';
 import { Login } from './features/auth/Login';
 import { HomePage } from './features/questions/HomePage';
+import { Leaderboard } from './features/leaderboard/Leaderboard';
 import { NotFoundPage } from './NotFoundPage';
 
 
 function App() {
   return (
-    <div className="content-container">
       <BrowserRouter>
         <Switch>
-          <PrivateRoute component={HomePage} path="/home" exact />
+          <PrivateRoute component={HomePage} path="/" exact />
+          <PrivateRoute component={Leaderboard} path="/leaderboard" exact />
           <PublicRoute component={Login} restricted={true} path="/login" exact />
-          <Route component={NotFoundPage} />  
+          <Route component={NotFoundPage} />
         </Switch>
       </BrowserRouter>
-    </div>
   );
 }
 
