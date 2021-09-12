@@ -31,12 +31,32 @@ export const questionsSlice = createSlice({
   }
 })
 
-export const selectNotAnsweredQuestions = (state, userId) => {
-
+export const selectAnsweredQuestionIDs = (state, userId) => {
+  const answeredQuestions = []
+  const userAnswers = state.users.items[userId].answers
+  for (const key of Object.keys(userAnswers)) {
+    answeredQuestions.push(key)
+  }
+  return answeredQuestions
 }
 
-export const selectAnsweredQuestions = (state, userId) => {
 
+
+export const selectNotAnsweredQuestionIDs = (state, userId) => {
+  const notAnsweredQuestions = []
+  const userAnswers = selectAnsweredQuestionIDs(state, userId)
+
+
+  for (const key of Object.keys(state.questions.items)) {
+    if(!userAnswers.includes(key)){
+      notAnsweredQuestions.push(key)
+    }
+  }
+  return notAnsweredQuestions
+}
+
+export const selectQuestionById = (state, id) => {
+  return state.questions.items[id]
 }
 
 export default questionsSlice.reducer
