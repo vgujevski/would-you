@@ -7,6 +7,7 @@ import { Login } from './features/auth/Login';
 import { HomePage } from './features/questions/HomePage';
 import { Leaderboard } from './features/leaderboard/Leaderboard';
 import { NotFoundPage } from './NotFoundPage';
+import { QuestionPage } from './features/questions/QuestionPage';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <PrivateRoute component={HomePage} path="/" exact />
           <PrivateRoute component={Leaderboard} path="/leaderboard" exact />
+          <PrivateRoute component={QuestionPage} path="/questions/:id" exact />
           <PublicRoute component={Login} restricted={true} path="/login" exact />
           <Route component={NotFoundPage} />
         </Switch>

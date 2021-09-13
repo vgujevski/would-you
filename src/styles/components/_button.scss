@@ -11,9 +11,23 @@
     opacity: 0.6;
   }
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     &:not([disabled]) {
-      background-color: darken($color-dark-accent, 25%);
+      background-color: darken($color-dark-accent, 50%);
     }
   }
+}
+
+.dark {
+  background-color: $color-light;
+  color: $color-dark-accent;
+
+  &:hover,
+  &:active {
+    &:not([disabled]) {
+      background-color: lighten($color-dark-accent, 25%);
+    }
+  }
+
 }
