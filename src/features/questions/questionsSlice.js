@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { _getQuestions } from "../../api/_DATA";
+import { _getQuestions, _saveQuestionAnswer } from "../../api/_DATA";
 
 const initialState = {
   items: {},
@@ -15,6 +15,14 @@ export const fetchQuestions = createAsyncThunk(
   }
 )
 
+export const answerQuestion = createAsyncThunk(
+  'questions/answerQuestion',
+  async answer => {
+    await _saveQuestionAnswer(answer)
+    return answer
+  }
+)
+
 export const questionsSlice = createSlice({
   name: 'questions',
   initialState,
@@ -27,6 +35,15 @@ export const questionsSlice = createSlice({
       .addCase(fetchQuestions.fulfilled, (state, action) => {
         state.status = 'idle'
         state.items = action.payload
+      })
+      .addCase(answerQuestion.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(answerQuestion.fulfilled, (state, action) => {
+        console.log('questionsSlice answerQuestion reducer called');
+        state.status = 'idle'
+        const { authedUser, qid, answer } = action.payload
+        state.items[qid][answer].votes.push(authedUser)
       })
   }
 })

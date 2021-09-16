@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { _getUsers } from "../../api/_DATA";
+import { answerQuestion } from "../questions/questionsSlice";
 
 const initialState = {
   items: {},
@@ -21,7 +22,7 @@ export const usersSlice = createSlice({
   reducers: {
     getUsers: (state, action) => {
       state.items = action.payload
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -31,6 +32,11 @@ export const usersSlice = createSlice({
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.status = 'idle'
         state.items = action.payload
+      })
+      .addCase(answerQuestion.fulfilled, (state, action) => {
+        console.log('userSlice answerQuestion reducer called');
+        const { authedUser, qid, answer } = action.payload
+        state.items[authedUser].answers[qid] = answer
       })
   }
 })
