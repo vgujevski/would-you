@@ -57,8 +57,6 @@ export const selectAnsweredQuestionIDs = (state, userId) => {
   return answeredQuestions
 }
 
-
-
 export const selectNotAnsweredQuestionIDs = (state, userId) => {
   const notAnsweredQuestions = []
   const userAnswers = selectAnsweredQuestionIDs(state, userId)
@@ -75,5 +73,8 @@ export const selectNotAnsweredQuestionIDs = (state, userId) => {
 export const selectQuestionById = (state, id) => {
   return state.questions.items[id]
 }
+
+export const OPTION_ONE = 'optionOne'
+export const OPTION_TWO = 'optionTwo'
 
 export default questionsSlice.reducer

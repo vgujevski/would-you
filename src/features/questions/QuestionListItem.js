@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 
@@ -29,4 +30,8 @@ export const QuestionsListItem = ({ id }) => {
       </div>
     </div>
   )
+}
+
+QuestionsListItem.propTypes = {
+  id: PropTypes.string.isRequired,
 }

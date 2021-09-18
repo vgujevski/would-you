@@ -45,6 +45,10 @@ export const { getUsers } = usersSlice.actions
 
 export const selectAllUsers = (state) => state.users.items
 
+export const selectUserQuestionAnswer = (state, userId, questionId) => {
+  return state.users.items[userId].answers[questionId]
+}
+
 export const selectUserById = (state, id) => state.users.items[id]
 
 export default usersSlice.reducer
