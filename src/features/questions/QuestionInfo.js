@@ -8,6 +8,8 @@ import { selectUserById } from '../users/usersSlice'
 import { selectUserQuestionAnswer } from '../users/usersSlice'
 import { OPTION_ONE, OPTION_TWO } from './questionsSlice'
 import { formatVoteCountMessage } from '../utility/utils'
+import { formatPercentage } from '../utility/utils'
+import { ProgressBar } from '../components/ProgressBar'
 
 export const QuestionInfo = ({ id }) => {
 
@@ -15,12 +17,12 @@ export const QuestionInfo = ({ id }) => {
   const question = useSelector(state => selectQuestionById(state, id))
   const { name, avatarURL } = useSelector(state => selectUserById(state, question.author))
   const answer = useSelector(state => selectUserQuestionAnswer(state, authedUser, id))
-
-  // TODO user, selected answer, stats (most popular answer, number of answers for each option, button ( go to next unanswered question ))
+  const optionOnePercentage = formatPercentage(question.optionOne.votes.length, question.optionTwo.votes.length)
+  const optionTwoPercentage = formatPercentage(question.optionTwo.votes.length, question.optionOne.votes.length)
 
   return (
     <div>
-      {name} asked:
+      <h2>{name} asked:</h2>
       <div className="row-container">
         <img className="list-item-avatar" src={avatarURL} alt="avatar" />
         <div className="column-container">
@@ -29,11 +31,13 @@ export const QuestionInfo = ({ id }) => {
             {answer === OPTION_ONE && <span>Your answer</span>}
             <h3>Would you rather {question.optionOne.text}?</h3>
             <p>{formatVoteCountMessage(question.optionOne.votes.length)}</p>
+            <ProgressBar completed={optionOnePercentage}/>
           </div>
           <div>
             {answer === OPTION_TWO && <span>Your answer</span>}
             <h3>Would you rather {question.optionTwo.text}?</h3>
             <p>{formatVoteCountMessage(question.optionTwo.votes.length)}</p>
+            <ProgressBar completed={optionTwoPercentage}/>
           </div>
         </div>
       </div>

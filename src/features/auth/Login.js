@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
 
-import { selectAllUsers } from '../users/usersSlice'
+import { selectAllUserIDs } from '../users/usersSlice'
 import { UserOption } from './UserOption'
 import { login } from './authSlice'
 
 export const Login = () => {
 
   const [selectedUser, setSelectedUser] = useState('')
-  const users = useSelector(selectAllUsers)
+  const userIDs = useSelector(selectAllUserIDs)
   const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
@@ -19,8 +19,8 @@ export const Login = () => {
   }
 
   let options = []
-  Object.keys(users).forEach(userId => {
-    options.push({ value: userId, label: userId })
+  userIDs.forEach(id => {
+    options.push({ value: id, label: id })
   })
 
   const formatOptionsLabel = ({ value }) => (

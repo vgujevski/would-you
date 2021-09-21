@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { _getQuestions, _saveQuestionAnswer } from "../../api/_DATA";
+import { _getQuestions, _saveQuestionAnswer, _saveQuestion } from "../../api/_DATA";
 
 const initialState = {
   items: {},
@@ -20,6 +20,14 @@ export const answerQuestion = createAsyncThunk(
   async answer => {
     await _saveQuestionAnswer(answer)
     return answer
+  }
+)
+
+export const saveNewQuestion = createAsyncThunk(
+  'questions/saveNewQuestion',
+  async question => {
+    const response = await _saveQuestion(question)
+    return response
   }
 )
 
@@ -45,6 +53,10 @@ export const questionsSlice = createSlice({
         const { authedUser, qid, answer } = action.payload
         state.items[qid][answer].votes.push(authedUser)
       })
+      .addCase(saveNewQuestion.fulfilled, (state, action) => {
+        console.log('saveNewQuestion fulfilled, response: ', JSON.stringify(action.payload, null, 2));
+        state.items[action.payload.id] = action.payload
+      })
   }
 })
 
@@ -60,7 +72,6 @@ export const selectAnsweredQuestionIDs = (state, userId) => {
 export const selectNotAnsweredQuestionIDs = (state, userId) => {
   const notAnsweredQuestions = []
   const userAnswers = selectAnsweredQuestionIDs(state, userId)
-
 
   for (const key of Object.keys(state.questions.items)) {
     if(!userAnswers.includes(key)){

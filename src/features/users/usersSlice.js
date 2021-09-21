@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { _getUsers } from "../../api/_DATA";
 import { answerQuestion } from "../questions/questionsSlice";
+import { saveNewQuestion } from "../questions/questionsSlice";
 
 const initialState = {
   items: {},
@@ -38,12 +39,18 @@ export const usersSlice = createSlice({
         const { authedUser, qid, answer } = action.payload
         state.items[authedUser].answers[qid] = answer
       })
+      .addCase(saveNewQuestion.fulfilled, (state, action) => {
+        const { id, author } = action.payload 
+        state.items[author].questions.push(id)
+      })
   }
 })
 
 export const { getUsers } = usersSlice.actions
 
 export const selectAllUsers = (state) => state.users.items
+
+export const selectAllUserIDs = state => Object.keys(state.users.items)
 
 export const selectUserQuestionAnswer = (state, userId, questionId) => {
   return state.users.items[userId].answers[questionId]

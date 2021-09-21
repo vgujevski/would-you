@@ -19,11 +19,11 @@ export const Navbar = () => {
         <div className="nav-container">
           <div>
             <NavLink exact activeClassName="link-active" className="button" to="/">Home</NavLink>
+            <NavLink style={{ marginLeft: "2rem" }} exact activeClassName="link-active" className="button" to="/new">New Poll</NavLink>
             <NavLink style={{ marginLeft: "2rem" }} exact activeClassName="link-active" className="button" to="/leaderboard">leaderboard</NavLink>
           </div>
           <button className="button" onClick={handleLogout}>Logout</button>
         </div>
-
       </div>
     </div>
   )
