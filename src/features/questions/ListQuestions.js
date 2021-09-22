@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 import { QuestionsListItem } from './QuestionListItem'
 import { useSelector } from 'react-redux'
 import { selectAuthedUser } from '../auth/authSlice'
-import { selectNotAnsweredQuestionIDs, selectAnsweredQuestionIDs } from './questionsSlice'
+import { selectAnsweredQuestions, selectNotAnsweredQuestions } from './questionsSlice'
 
 
 export const ListQuestions = ({ isAnswered }) => {
 
   const user = useSelector(selectAuthedUser)
-  const answeredQuestions = useSelector(state => selectAnsweredQuestionIDs(state, user))
-  const notAnsweredQUestions = useSelector(state => selectNotAnsweredQuestionIDs(state, user))
+  const answeredQuestions = useSelector(state => selectAnsweredQuestions(state, user))
+  const notAnsweredQUestions = useSelector(state => selectNotAnsweredQuestions(state, user))
 
   let questions = []
   if(isAnswered) {
@@ -23,8 +23,11 @@ export const ListQuestions = ({ isAnswered }) => {
   return (
     <div className="content-container">
       {
-        questions.map(id => (
-          <QuestionsListItem key={id} id={id}/>
+        // questions.map(id => (
+        //   <QuestionsListItem key={id} id={id}/>
+        // ))
+        questions.map(question => (
+          <QuestionsListItem key={question.id} id={question.id}/>
         ))
       }
     </div>

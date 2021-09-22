@@ -60,15 +60,45 @@ export const questionsSlice = createSlice({
   }
 })
 
+/**
+ * returns not sorted array of answered question IDs
+ * 
+ * @param {object} state 
+ * @param {string} userId 
+ * @returns {array} answered question questionIDs
+ */
 export const selectAnsweredQuestionIDs = (state, userId) => {
   const answeredQuestions = []
-  const userAnswers = state.users.items[userId].answers
+  const userAnswers =  state.users.items[userId].answers
   for (const key of Object.keys(userAnswers)) {
     answeredQuestions.push(key)
   }
   return answeredQuestions
 }
 
+/**
+ * returns sorted by timestamp array of answered question objects
+ * 
+ * @param {object} state 
+ * @param {string} userId 
+ * @returns {array} answered question objects
+ */
+export const selectAnsweredQuestions = (state, userId) => {
+  const answeredQuestions = []
+  const userAnswers =  state.users.items[userId].answers
+  for (const key of Object.keys(userAnswers)) {
+    answeredQuestions.push(state.questions.items[key])
+  }
+  return answeredQuestions.sort((a, b) => b.timestamp - a.timestamp)
+}
+
+/**
+ * returns not sorted array of NOT answered question IDs
+ * 
+ * @param {object} state 
+ * @param {string} userId 
+ * @returns {array} answered question IDs
+ */
 export const selectNotAnsweredQuestionIDs = (state, userId) => {
   const notAnsweredQuestions = []
   const userAnswers = selectAnsweredQuestionIDs(state, userId)
@@ -81,6 +111,31 @@ export const selectNotAnsweredQuestionIDs = (state, userId) => {
   return notAnsweredQuestions
 }
 
+/**
+ * returns sorted by timestamp array of NOT answered question objects
+ * 
+ * @param {object} state 
+ * @param {string} userId 
+ * @returns {array} NOT answered question objects
+ */
+export const selectNotAnsweredQuestions = (state, userId) => {
+  const notAnsweredQuestions = []
+  const userAnswers = selectAnsweredQuestionIDs(state, userId)
+
+  for (const key of Object.keys(state.questions.items)) {
+    if(!userAnswers.includes(key)){
+      notAnsweredQuestions.push(state.questions.items[key])
+    }
+  }
+  return notAnsweredQuestions.sort((a, b) => b.timestamp - a.timestamp)
+}
+
+/**
+ * 
+ * @param {object} state 
+ * @param {string} id 
+ * @returns {object} user
+ */
 export const selectQuestionById = (state, id) => {
   return state.questions.items[id]
 }
