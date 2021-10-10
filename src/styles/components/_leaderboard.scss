@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 60%; // increase width for devices with smaller screen
+  width: 50%; // increase width for devices with smaller screen
   margin-bottom: 2rem;
   padding: 1rem;
+  background: $color-dark-accent;
+  border-radius: 2%;
 }
 
 .leaderboard-container {
@@ -50,6 +52,15 @@
   }
 
   p {
-   
+    margin-top: 1rem;
+    width:$xl-size;
+    height:$xl-size;
+    border-radius:50%;
+    font-size: $l-size;
+    color: $color-dark;
+    line-height:$xl-size;
+    text-align:center;
+    background: $color-main-accent;
+    font-weight: bold;
   }
 }
