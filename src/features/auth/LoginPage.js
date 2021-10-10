@@ -4,19 +4,14 @@ import Select from 'react-select'
 
 import { selectAllUserIDs } from '../users/usersSlice'
 import { UserOption } from './UserOption'
-import { login } from './authSlice'
+import { useHistory } from 'react-router'
+import { useLocation } from 'react-router'
+import { useAuth } from './auth-hooks'
 
-export const Login = () => {
+export const LoginPage = () => {
 
   const [selectedUser, setSelectedUser] = useState('')
   const userIDs = useSelector(selectAllUserIDs)
-  const dispatch = useDispatch()
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('handleSubmit called with: ', selectedUser.value);
-    dispatch(login(selectedUser.value))
-  }
 
   let options = []
   userIDs.forEach(id => {
@@ -27,6 +22,17 @@ export const Login = () => {
     <UserOption id={value} />
   )
 
+  let history = useHistory();
+  let location = useLocation();
+  let auth = useAuth();
+
+  let { from } = location.state || { from: { pathname: "/" } };
+  let login = () => {
+    auth.signin(selectedUser.value, () => {
+      history.replace(from);
+    });
+  };
+
   return (
     <div className="user-select-container">
       <Select
@@ -36,7 +42,7 @@ export const Login = () => {
         formatOptionLabel={formatOptionsLabel}
         options={options}
       />
-      <button disabled={selectedUser === ''} onClick={handleSubmit} className="button">Login</button>
+      <button disabled={selectedUser === ''} onClick={login} className="button">Login</button>
     </div>
   )
 }

@@ -16,11 +16,14 @@ export const Leaderboard = () => {
     <div>
       <Navbar />
       <div className="content-container">
-        {
-          leaderboardEntries.map(user => (
-            <LeaderboardItem key={user.id} user={user}/>
-          ))
-        }
+        <div className="leaderboard-container">
+          <h2 className="page-title">Leader Board</h2>
+          {
+            leaderboardEntries.map(user => (
+              <LeaderboardItem key={user.id} user={user} />
+            ))
+          }
+        </div>
       </div>
     </div>
   )

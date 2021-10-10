@@ -1,16 +1,25 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { isAuthed as checkAuthedUser } from '../auth/authSlice';
+import { useAuth } from '../auth/auth-hooks';
 
-export const PrivateRoute = ({component: Component, ...rest}) => {
+export const PrivateRoute = ({ children, ...rest }) => {
+	let auth = useAuth()
 
-    const isAuthed = useSelector(checkAuthedUser)
-    return (
-        <Route {...rest} render={props => (
-          isAuthed ?
-                <Component {...props} />
-            : <Redirect to="/login" />
-        )} />
-    );
-};
+	return (
+		<Route
+			{...rest}
+			render={({ location }) =>
+				auth.user ? (
+					children
+				) : (
+					<Redirect
+						to={{
+							pathname: "/login",
+							state: { from: location }
+						}}
+					/>
+				)
+			}
+		/>
+	)
+}

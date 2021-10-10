@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { QuestionsListItem } from './QuestionListItem'
@@ -23,9 +23,6 @@ export const ListQuestions = ({ isAnswered }) => {
   return (
     <div className="content-container">
       {
-        // questions.map(id => (
-        //   <QuestionsListItem key={id} id={id}/>
-        // ))
         questions.map(question => (
           <QuestionsListItem key={question.id} id={question.id}/>
         ))

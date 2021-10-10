@@ -6,15 +6,25 @@ export const LeaderboardItem = ({ user }) => {
   const { name, avatarURL, numAnswers, numQuestions, score } = user
 
   return (
-    <div className="row-container">
-      <img className="list-item-avatar" src={avatarURL} alt="avatar" />
-      <div className="column-container">
-        <div>{name}</div>
-        <div>Questions Answered: {numAnswers}</div>
-        <div>Questions Asked: {numQuestions}</div>
+    <div className="entry-container">
+      <div className="row-container">
+        <div className="avatar-container">
+          <img className="list-item-avatar" src={avatarURL} alt="avatar" />
+        </div>
+        <div className="details-container">
+          <div>{name}</div>
+          <div>Answered: {numAnswers}</div>
+          <div>Asked: {numQuestions}</div>
+        </div>
+
+        <div className="score-container">
+          <h2>Score</h2>
+          <p>{score}</p>
+        </div>
+
       </div>
-      <div>Total Score: {score}</div>
     </div>
+
   )
 }
 

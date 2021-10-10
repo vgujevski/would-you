@@ -1,29 +1,52 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { PrivateRoute } from './features/routes/PrivateRoute';
-import { PublicRoute } from './features/routes/PublicRoute';
-import { Login } from './features/auth/Login';
+import { LoginPage } from './features/auth/LoginPage';
 import { HomePage } from './features/questions/HomePage';
 import { Leaderboard } from './features/leaderboard/Leaderboard';
 import { NotFoundPage } from './NotFoundPage';
 import { QuestionPage } from './features/questions/QuestionPage';
 import { NewQuestionPage } from './features/questions/NewQuestionPage';
 
+import { ProvideAuth } from './features/auth/auth-hooks';
+import { fetchQuestions } from './features/questions/questionsSlice';
 
-function App() {
+const  App = () => {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchQuestions())
+  }, [dispatch])
+
   return (
-      <BrowserRouter>
-        <Switch>
-          <PrivateRoute component={NewQuestionPage} path="/new" exact />
-          <PrivateRoute component={HomePage} path="/" exact />
-          <PrivateRoute component={Leaderboard} path="/leaderboard" exact />
-          <PrivateRoute component={QuestionPage} path="/questions/:id" exact />
-          <PublicRoute component={Login} restricted={true} path="/login" exact />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </BrowserRouter>
-  );
+    <ProvideAuth>
+      <Router>
+        <div>
+          <Switch>
+            <PrivateRoute path="/" exact>
+              <HomePage />
+            </PrivateRoute>
+            <PrivateRoute path="/leaderboard">
+              <Leaderboard />
+            </PrivateRoute>
+            <PrivateRoute path="/questions/:id">
+              <QuestionPage />
+            </PrivateRoute>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <PrivateRoute path="/new">
+              <NewQuestionPage />
+            </PrivateRoute>
+            <Route component={NotFoundPage}/>
+          </Switch>
+        </div>
+      </Router>
+    </ProvideAuth>
+  )
+
 }
 
 export default App;

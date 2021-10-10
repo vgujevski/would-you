@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { OPTION_ONE, OPTION_TWO } from './questionsSlice'
+import { selectUserById } from '../users/usersSlice'
 
-export const AnswerQuestion = ({ author, avatarURL, question, handleAnswerQuestion }) => {
+export const AnswerQuestion = ({ question, handleAnswerQuestion }) => {
 
   const [selectedAnswer, setSelectedAnswer] = useState('optionOne')
+  const { name, avatarURL } = useSelector(state => selectUserById(state, question.author))
 
   const handleSubmit = () => {
     handleAnswerQuestion(selectedAnswer)
@@ -13,7 +16,7 @@ export const AnswerQuestion = ({ author, avatarURL, question, handleAnswerQuesti
 
   return (
     <div>
-      <h3>{author} asks:</h3>
+      <h3>{name} asks:</h3>
       <div className="row-container">
         <img className="list-item-avatar" src={avatarURL} alt="avatar" />
         <div className="column-container">
