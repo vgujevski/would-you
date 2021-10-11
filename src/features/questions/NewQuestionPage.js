@@ -17,11 +17,11 @@ export const NewQuestionPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="content-container">
+      <div className="content-container column-container">
+        <h2 className="new-question-title">Create New Question</h2>
         <div className="new-question-container">
           <div className="column-container">
-            <h1 className="title">Create New Question</h1>
-            <h2>Would you rather ...</h2>
+            <h2 className="sub-title">Would you rather ...</h2>
             <Formik
               initialValues={{ optionOne: '', optionTwo: '' }}
               validationSchema={Yup.object({
@@ -42,7 +42,7 @@ export const NewQuestionPage = () => {
                 <Field className="text-input" placeholder="Enter option one text here" name="optionOne" type="text" />
                 <ErrorMessage name="optionOne" />
 
-                <h2> ... or ... </h2>
+                <h2 className="sub-title"> ... or ... </h2>
 
                 <Field className="text-input" placeholder="Enter option two text here" name="optionTwo" type="text" />
                 <ErrorMessage name="optionTwo" />
