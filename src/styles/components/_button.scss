@@ -6,6 +6,8 @@
   border-radius: 0.2rem;
   background-color: $color-dark-accent;
   color: $color-light;
+  font-size: $font-size-medium;
+  font-weight: bold;
 
   &[disabled] {
     opacity: 0.6;

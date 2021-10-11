@@ -16,11 +16,11 @@ export const AnswerQuestion = ({ question, handleAnswerQuestion }) => {
 
   return (
     <div>
-      <h3>{name} asks:</h3>
+      <h2>{name} asks:</h2>
       <div className="row-container">
         <img className="list-item-avatar" src={avatarURL} alt="avatar" />
         <div className="column-container">
-          <p>Would you rather</p>
+          <h3>Would you rather</h3>
           <label>
             <input
               type="radio"
@@ -38,7 +38,7 @@ export const AnswerQuestion = ({ question, handleAnswerQuestion }) => {
               onChange={() => setSelectedAnswer(OPTION_TWO)} />
             <span>{question.optionTwo.text}</span>
           </label>
-          <button onClick={handleSubmit} className="button">Submit</button>
+          <button onClick={handleSubmit} className="button dark">Submit</button>
         </div>
       </div>
     </div>
