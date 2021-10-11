@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 50%; // increase width for devices with smaller screen
+  min-width: 50%;
   margin-bottom: 2rem;
   padding: 1rem;
   background: $color-dark-accent;
@@ -36,6 +36,7 @@
   padding-left: 1rem;
   border-right: 1px solid $color-light-accent;
   padding-right: 1rem;
+  color: $color-light;
 }
 
 .score-container {
@@ -49,6 +50,7 @@
 
   h2 {
     border-bottom: 1px solid $color-light-accent;
+    color: $color-light;
   }
 
   p {
@@ -57,10 +59,10 @@
     height:$xl-size;
     border-radius:50%;
     font-size: $l-size;
-    color: $color-dark;
+    color: $color-light;
     line-height:$xl-size;
     text-align:center;
-    background: $color-main-accent;
+    background: $color-light-accent;
     font-weight: bold;
   }
 }

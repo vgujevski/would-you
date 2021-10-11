@@ -12,9 +12,9 @@ export const LeaderboardItem = ({ user }) => {
           <img className="list-item-avatar" src={avatarURL} alt="avatar" />
         </div>
         <div className="details-container">
-          <div>{name}</div>
-          <div>Answered: {numAnswers}</div>
-          <div>Asked: {numQuestions}</div>
+          <h2>{name}</h2>
+          <p>Answered: {numAnswers}</p>
+          <p>Asked: {numQuestions}</p>
         </div>
 
         <div className="score-container">
