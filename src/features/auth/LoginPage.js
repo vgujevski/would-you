@@ -34,15 +34,21 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="user-select-container">
-      <Select
-        className="react-select-container"
-        value={selectedUser}
-        onChange={(selected) => setSelectedUser(selected)}
-        formatOptionLabel={formatOptionsLabel}
-        options={options}
-      />
-      <button disabled={selectedUser === ''} onClick={login} className="button">Login</button>
+    <div className="content-container">
+      <div className="login-page-container">
+        <h1>Welcome to Would You Rather App</h1>
+        <div className="user-select-container">
+          <Select
+            className="react-select-container"
+            value={selectedUser}
+            onChange={(selected) => setSelectedUser(selected)}
+            formatOptionLabel={formatOptionsLabel}
+            options={options}
+          />
+          <button disabled={selectedUser === ''} onClick={login} className="button">Login</button>
+        </div>
+      </div>
     </div>
+
   )
 }

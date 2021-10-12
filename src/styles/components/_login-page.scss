@@ -1,0 +1,11 @@
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  h1 {
+    margin-top: 40vh;
+    margin-bottom: 2rem;
+  }
+}
