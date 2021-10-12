@@ -21,20 +21,20 @@ export const QuestionInfo = ({ id }) => {
   const optionTwoPercentage = formatPercentage(question.optionTwo.votes.length, question.optionOne.votes.length)
 
   return (
-    <div>
+    <div className="question-info-container">
       <h2>{name} asked:</h2>
       <div className="row-container">
-        <img className="list-item-avatar" src={avatarURL} alt="avatar" />
+        <img className="list-item-avatar info-avatar" src={avatarURL} alt="avatar" />
         <div className="column-container">
           <h2>Results:</h2>
-          <div>
-            {answer === OPTION_ONE && <span>Your answer</span>}
+          <div className="answer">
+            {answer === OPTION_ONE && <span className="selected-answer">Your answer</span>}
             <h3>Would you rather {question.optionOne.text}?</h3>
             <p>{formatVoteCountMessage(question.optionOne.votes.length)}</p>
             <ProgressBar completed={optionOnePercentage}/>
           </div>
-          <div>
-            {answer === OPTION_TWO && <span>Your answer</span>}
+          <div className="answer">
+            {answer === OPTION_TWO && <span className="selected-answer">Your answer</span>}
             <h3>Would you rather {question.optionTwo.text}?</h3>
             <p>{formatVoteCountMessage(question.optionTwo.votes.length)}</p>
             <ProgressBar completed={optionTwoPercentage}/>

@@ -1,0 +1,20 @@
+.question-info-container {
+  h2 {
+    margin-bottom: 2rem;
+  }
+  .info-avatar {
+     margin-right: 3rem;
+  }
+
+  .answer {
+    margin-bottom: 2rem;
+  }
+
+  .selected-answer {
+    background-color: $color-main-accent;
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    color: $color-dark;
+    font-weight: bold;
+  }
+}
