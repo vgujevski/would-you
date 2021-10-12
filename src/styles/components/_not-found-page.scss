@@ -1,0 +1,12 @@
+.not-found-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h2 {
+    margin-top: 40vh;
+    text-align: center;
+  }
+  .link {
+    text-align: center;
+  }
+}
