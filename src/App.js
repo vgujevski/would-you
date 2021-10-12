@@ -37,7 +37,7 @@ const  App = () => {
             <Route path="/login">
               <LoginPage />
             </Route>
-            <PrivateRoute path="/new">
+            <PrivateRoute path="/add">
               <NewQuestionPage />
             </PrivateRoute>
             <Route component={NotFoundPage}/>
