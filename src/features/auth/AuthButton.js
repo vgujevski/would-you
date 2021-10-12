@@ -11,7 +11,7 @@ export const AuthButton = () => {
 
   return auth.user ? (
     <p>
-      {`Welcome ${name} `}
+      {`Hello, ${name} `}
       <button
         onClick={() => {
           auth.signout(() => history.push("/"));
