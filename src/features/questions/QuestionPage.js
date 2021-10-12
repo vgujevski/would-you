@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, useHistory, Redirect  } from 'react-router'
+import { useParams, useHistory  } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Navbar } from '../nav/Navbar'

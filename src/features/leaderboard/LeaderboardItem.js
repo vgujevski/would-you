@@ -33,7 +33,7 @@ LeaderboardItem.propTypes = {
     name: PropTypes.string.isRequired,
     avatarURL: PropTypes.string.isRequired,
     numAnswers: PropTypes.number.isRequired,
-    numQuestion: PropTypes.number.isRequired,
+    numQuestions: PropTypes.number.isRequired,
     score: PropTypes.number.isRequired,
   })
 }
