@@ -4,10 +4,13 @@ import PropTypes from 'prop-types'
 
 import { OPTION_ONE, OPTION_TWO } from './questionsSlice'
 import { selectUserById } from '../users/usersSlice'
+import { selectQuestionById } from './questionsSlice'
 
-export const AnswerQuestion = ({ question, handleAnswerQuestion }) => {
+export const AnswerQuestion = ({id, handleAnswerQuestion }) => {
 
   const [selectedAnswer, setSelectedAnswer] = useState('optionOne')
+  
+  const question = useSelector(state => selectQuestionById(state, id))
   const { name, avatarURL } = useSelector(state => selectUserById(state, question.author))
 
   const handleSubmit = () => {
@@ -46,6 +49,6 @@ export const AnswerQuestion = ({ question, handleAnswerQuestion }) => {
 }
 
 AnswerQuestion.propTypes = {
-  question: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
   handleAnswerQuestion: PropTypes.func.isRequired,
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, useHistory  } from 'react-router'
+import { useParams, useHistory, Redirect  } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Navbar } from '../nav/Navbar'
@@ -22,7 +22,9 @@ export const QuestionPage = () => {
   const answer = useSelector(state => selectUserQuestionAnswer(state, authedUser, id))
 
   if(question === undefined) {
-    history.push("/404")
+    return (
+      <Redirect to="/404"/> 
+    )
   }
 
   const handleAnswerQuestion = (selectedAnswer) => {
@@ -44,7 +46,7 @@ export const QuestionPage = () => {
             ) : (              
               <AnswerQuestion
                 handleAnswerQuestion={handleAnswerQuestion}
-                question={question} />
+                id={id} />
             )
           }
         </div>
